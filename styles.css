@@ -1,0 +1,395 @@
+/* ============================================
+   Portafolio Alexander Guzmán — Estilos
+   Sitio estático: sin servidor, sin dependencias
+   de build. Fuentes: Google Fonts (Poppins).
+   ============================================ */
+
+:root {
+  --bg: #121212;
+  --bg-panel: #1c1c1c;
+  --bg-well: #2c3e50;
+  --bg-well-alt: #34495e;
+  --border: #46627f;
+  --text: #ecf0f1;
+  --text-muted: #bdc3c7;
+  --accent: #1e90ff;
+  --accent-hover: #63b3ff;
+  --maxw: 1000px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------- Navegación ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.nav-links { display: flex; gap: 6px; }
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover { color: var(--text); background: #222; }
+.nav-links a.active { color: var(--accent); }
+
+/* ---------- Layout general ---------- */
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 36px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  background: var(--bg-panel);
+  border-radius: 16px;
+  padding: 44px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero img {
+  width: 210px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #f8f9fa;
+  flex-shrink: 0;
+}
+
+.hero-text { max-width: 520px; }
+
+.hero-text h1 { font-size: 32px; font-weight: 700; }
+
+.hero-text h2 {
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--accent);
+  margin: 4px 0 16px;
+}
+
+.hero-text p { color: var(--text-muted); font-size: 15.5px; text-align: justify; }
+
+.hero-links { margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+.btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline:hover { background: var(--accent); color: #fff; }
+
+/* ---------- Tarjetas / wells ---------- */
+.well {
+  background: var(--bg-well);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 26px;
+  margin-bottom: 20px;
+}
+
+.well.alt { background: var(--bg-well-alt); }
+
+.well h3, .well h4 { margin-bottom: 12px; font-weight: 600; }
+.well ul { padding-left: 20px; color: var(--text-muted); }
+.well li { margin-bottom: 7px; }
+.well p { color: var(--text-muted); }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .hero { padding: 28px; text-align: center; }
+  .hero-links { justify-content: center; }
+  .nav { padding: 12px 16px; }
+  .nav-links a { padding: 6px 9px; font-size: 13.5px; }
+}
+
+/* ---------- Habilidades ---------- */
+.skills-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 720px) { .skills-row { grid-template-columns: 1fr 1fr; } }
+
+.skill-col b { color: var(--text); display: block; margin-bottom: 6px; }
+.skill-col span { color: var(--text-muted); display: block; font-size: 14.5px; }
+
+.quote {
+  font-style: italic;
+  text-align: center;
+  color: var(--text);
+}
+
+/* ---------- Proyectos ---------- */
+.project-card {
+  background: var(--bg-panel);
+  border: 1px solid #2f2f2f;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+
+.project-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.project-card-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; }
+
+.project-card-body h3 { font-size: 19px; margin-bottom: 10px; }
+.project-card-body p { color: var(--text-muted); font-size: 14.5px; margin-bottom: 18px; flex: 1; }
+
+.tag {
+  display: inline-block;
+  background: #23405c;
+  color: #9ec9f5;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin: 0 6px 6px 0;
+}
+
+.soon {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+.soon-badge {
+  display: inline-block;
+  background: #4a3a1e;
+  color: #e8c46a;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Contacto ---------- */
+.contact-box { text-align: center; max-width: 640px; margin: 0 auto; }
+.contact-box .well { margin-bottom: 28px; }
+.contact-box h4 { margin: 18px 0 6px; }
+.contact-box p { color: var(--text-muted); margin-bottom: 16px; }
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  color: #666;
+  font-size: 13.5px;
+  padding: 28px;
+  border-top: 1px solid #2a2a2a;
+}
+
+/* ============================================
+   Case study — carrusel
+   ============================================ */
+
+.case-title-card {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 18px 28px;
+  border-radius: 14px;
+  text-align: center;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 90%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+}
+
+.case-title-card h1 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 25px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  padding-bottom: 70px;
+  margin-top: 32px;
+}
+
+.carousel-slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 35px 55px;
+  background: var(--bg-panel);
+  color: white;
+  border-radius: 14px;
+  animation: fadeIn 0.5s ease;
+}
+
+.carousel-slide.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.carousel-content-box {
+  width: 100%;
+  max-width: 720px;
+}
+
+.carousel-content-box h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--accent-hover);
+}
+
+.carousel-content-box p {
+  text-align: justify;
+  line-height: 1.65;
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.carousel-content-box ul { padding-left: 20px; }
+.carousel-content-box li { margin-bottom: 8px; text-align: justify; }
+
+.carousel-content-box .evidencia {
+  background: #16202b;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 18px;
+  color: var(--text-muted);
+}
+
+.carousel-img {
+  max-width: 85%;
+  max-height: 55vh;
+  border-radius: 12px;
+  border: 2px solid #444;
+  object-fit: contain;
+  box-shadow: 0 0 18px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 720px) {
+  .carousel-slide { padding: 24px 18px; }
+  .carousel-img { max-width: 100%; }
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #555;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.dot.active { background-color: var(--accent); }
+
+.carousel-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.slide-counter {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 14px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.back-link:hover { color: var(--accent-hover); }
