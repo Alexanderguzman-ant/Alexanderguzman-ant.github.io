@@ -60,6 +60,75 @@
 
     .toggle-circles input { accent-color: var(--accent); cursor: pointer; }
 
+    /* Buscador de comunas */
+    .buscador-comuna { position: relative; }
+
+    .buscador-comuna input {
+      background: var(--bg-well);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      width: 220px;
+      max-width: 100%;
+    }
+
+    .buscador-comuna input::placeholder { color: var(--text-muted); }
+    .buscador-comuna input:focus { outline: none; border-color: var(--accent); }
+
+    .buscador-lista {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      width: 100%;
+      min-width: 240px;
+      background: var(--bg-well);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-height: 240px;
+      overflow-y: auto;
+      z-index: 1100;
+      display: none;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    .buscador-lista.visible { display: block; }
+
+    .buscador-lista .item {
+      padding: 8px 12px;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .buscador-lista .item:hover,
+    .buscador-lista .item.activo { background: var(--bg-well-alt); }
+
+    .buscador-lista .item small { color: var(--text-muted); margin-left: 6px; }
+
+    .buscador-lista .vacio {
+      padding: 8px 12px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* Botón volver a vista nacional */
+    .btn-nacional {
+      background: var(--bg-well);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13.5px;
+      cursor: pointer;
+      margin: -8px 0 20px;
+    }
+
+    .btn-nacional:hover { border-color: var(--accent); color: var(--accent-hover); }
+
     #mapa {
       height: 640px;
       border-radius: 10px;
@@ -160,6 +229,8 @@
     @media (max-width: 900px) {
       .obs-layout { grid-template-columns: 1fr; }
       #mapa { height: 60vh; min-height: 380px; }
+      .buscador-comuna { flex: 1 1 100%; }
+      .buscador-comuna input { width: 100%; }
     }
   </style>
 </head>
@@ -196,19 +267,24 @@
             <input type="checkbox" id="chk-circles" checked>
             Círculos proporcionales por n° de personas en calle
           </label>
+          <div class="buscador-comuna">
+            <input type="text" id="busca-comuna" placeholder="Buscar comuna…" autocomplete="off">
+            <div class="buscador-lista" id="busca-lista"></div>
+          </div>
         </div>
         <div id="mapa"></div>
       </div>
 
       <!-- Panel -->
       <div class="panel-box">
-        <h3>Indicadores nacionales</h3>
+        <h3 id="panel-titulo">Indicadores nacionales</h3>
         <div class="kpis">
           <div class="kpi"><div class="valor" id="kpi-total">—</div><div class="etiqueta">Personas en situación de calle (Censo 2024)</div></div>
           <div class="kpi"><div class="valor" id="kpi-hombres">—</div><div class="etiqueta">% hombres</div></div>
           <div class="kpi"><div class="valor" id="kpi-edad">—</div><div class="etiqueta">Edad promedio</div></div>
           <div class="kpi"><div class="valor" id="kpi-disc">—</div><div class="etiqueta">% con discapacidad</div></div>
         </div>
+        <button type="button" id="btn-nacional" class="btn-nacional" style="display:none;">← Volver a vista nacional</button>
         <h3>Top 10 comunas por personas en calle</h3>
         <div id="top10"></div>
       </div>
@@ -295,10 +371,16 @@
           if (d.pct_discapacidad != null) { wD += d.pct_discapacidad * d.n_psc; nD += d.n_psc; }
         }
       });
-      document.getElementById('kpi-total').textContent = fmt(total);
-      document.getElementById('kpi-hombres').textContent = fmtPct(wH / nH);
-      document.getElementById('kpi-edad').textContent = (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años';
-      document.getElementById('kpi-disc').textContent = fmtPct(wD / nD);
+      var VALORES_NACIONAL = [
+        fmt(total),
+        fmtPct(wH / nH),
+        (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años',
+        fmtPct(wD / nD)
+      ];
+      document.getElementById('kpi-total').textContent = VALORES_NACIONAL[0];
+      document.getElementById('kpi-hombres').textContent = VALORES_NACIONAL[1];
+      document.getElementById('kpi-edad').textContent = VALORES_NACIONAL[2];
+      document.getElementById('kpi-disc').textContent = VALORES_NACIONAL[3];
 
       // ---------- Top 10 ----------
       var top = Object.keys(datos)
@@ -388,6 +470,148 @@
           }
         });
         if (grupo.getLayers().length) mapa.fitBounds(grupo.getBounds(), { padding: [20, 20] });
+      });
+
+      // ---------- Capa de etiquetas por sobre el coroplético ----------
+      mapa.createPane('labels');
+      mapa.getPane('labels').style.zIndex = 640;
+      mapa.getPane('labels').style.pointerEvents = 'none';
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+        pane: 'labels',
+        maxZoom: 18
+      }).addTo(mapa);
+
+      // ---------- Panel de indicadores: nacional <-> comuna ----------
+      var panelTitulo = document.getElementById('panel-titulo');
+      var kpiValores = document.querySelectorAll('.kpis .valor');
+      var kpiEtiquetas = document.querySelectorAll('.kpis .etiqueta');
+      var btnNacional = document.getElementById('btn-nacional');
+
+      var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad'];
+      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad'];
+
+      function mostrarIndicadores(titulo, valores, etiquetas) {
+        panelTitulo.textContent = titulo;
+        valores.forEach(function (v, i) { kpiValores[i].textContent = v; });
+        etiquetas.forEach(function (t, i) { kpiEtiquetas[i].textContent = t; });
+      }
+
+      function mostrarNacional() {
+        mostrarIndicadores('Indicadores nacionales', VALORES_NACIONAL, ETIQUETAS_NACIONAL);
+        btnNacional.style.display = 'none';
+      }
+
+      function mostrarComuna(d, nombre) {
+        var valores = d ? [
+          d.n_psc > 0 ? fmt(d.n_psc) : 'Sin registro',
+          d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d',
+          d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d',
+          d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d'
+        ] : ['s/d', 's/d', 's/d', 's/d'];
+        mostrarIndicadores('Indicadores — ' + nombre, valores, ETIQUETAS_COMUNA);
+        btnNacional.style.display = 'inline-block';
+      }
+
+      // ---------- Resalte temporal del borde comunal ----------
+      var highlightLayer = null, highlightTimer = null;
+
+      function quitarResalte() {
+        clearTimeout(highlightTimer);
+        if (highlightLayer) { capaComunas.resetStyle(highlightLayer); highlightLayer = null; }
+      }
+
+      function resaltar(layer) {
+        quitarResalte();
+        highlightLayer = layer;
+        layer.setStyle({ weight: 3, color: '#ffd166' });
+        layer.bringToFront();
+        highlightTimer = setTimeout(quitarResalte, 4000);
+      }
+
+      btnNacional.addEventListener('click', function () {
+        mostrarNacional();
+        sel.value = '';
+        mapa.closePopup();
+        quitarResalte();
+        mapa.fitBounds(capaComunas.getBounds());
+      });
+
+      // ---------- Buscador de comunas ----------
+      var capasPorCod = {};
+      capaComunas.eachLayer(function (layer) {
+        capasPorCod[String(layer.feature.properties.cod_com)] = layer;
+      });
+
+      var norm = function (s) {
+        return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      };
+      var COMUNAS = geojson.features.map(function (f) {
+        var cod = String(f.properties.cod_com);
+        return {
+          cod: cod,
+          nombre: f.properties.comuna,
+          region: REGIONES[Math.floor(f.properties.cod_com / 1000)] || '',
+          clave: norm(f.properties.comuna)
+        };
+      }).sort(function (a, b) { return a.nombre.localeCompare(b.nombre, 'es'); });
+
+      var input = document.getElementById('busca-comuna');
+      var lista = document.getElementById('busca-lista');
+      var idxActivo = -1;
+
+      function ocultarLista() {
+        lista.classList.remove('visible');
+        idxActivo = -1;
+      }
+
+      function irAComuna(cod) {
+        var layer = capasPorCod[cod];
+        if (!layer) return;
+        mapa.fitBounds(layer.getBounds(), { maxZoom: 12, padding: [30, 30] });
+        layer.openPopup(layer.getBounds().getCenter());
+        input.value = '';
+        ocultarLista();
+      }
+
+      function renderLista() {
+        var q = norm(input.value.trim());
+        if (!q) { ocultarLista(); return; }
+        var matches = COMUNAS.filter(function (c) { return c.clave.indexOf(q) !== -1; }).slice(0, 8);
+        if (!matches.length) {
+          lista.innerHTML = '<div class="vacio">Sin resultados</div>';
+        } else {
+          lista.innerHTML = matches.map(function (c) {
+            return '<div class="item" data-cod="' + c.cod + '">' + c.nombre +
+              '<small>' + c.region + '</small></div>';
+          }).join('');
+        }
+        lista.classList.add('visible');
+        idxActivo = -1;
+      }
+
+      input.addEventListener('input', renderLista);
+      input.addEventListener('focus', renderLista);
+      input.addEventListener('blur', function () { setTimeout(ocultarLista, 150); });
+      input.addEventListener('keydown', function (e) {
+        var items = lista.querySelectorAll('.item');
+        if (!lista.classList.contains('visible') || !items.length) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          idxActivo += (e.key === 'ArrowDown' ? 1 : -1);
+          if (idxActivo < 0) idxActivo = items.length - 1;
+          if (idxActivo >= items.length) idxActivo = 0;
+          items.forEach(function (it, i) { it.classList.toggle('activo', i === idxActivo); });
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          var elegido = items[idxActivo] || items[0];
+          if (elegido) irAComuna(elegido.getAttribute('data-cod'));
+        } else if (e.key === 'Escape') {
+          ocultarLista();
+        }
+      });
+      lista.addEventListener('click', function (e) {
+        var item = e.target.closest('.item');
+        if (item) irAComuna(item.getAttribute('data-cod'));
       });
     }).catch(function (err) {
       document.getElementById('mapa').innerHTML =
