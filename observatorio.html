@@ -407,9 +407,9 @@
         onEachFeature: function (feature, layer) {
           var cod = String(feature.properties.cod_com);
           layer.bindPopup(popupHtml(datos[cod], cod));
-          layer.on('mouseover', function () {
-            layer.setStyle({ weight: 2, color: '#fff' });
-            layer.bringToFront();
+          layer.on('click', function () {
+            resaltar(layer);
+            mostrarComuna(datos[cod], feature.properties.comuna);
           });
           layer.on('mouseout', function () {
             capaComunas.resetStyle(layer);
@@ -569,6 +569,8 @@
         if (!layer) return;
         mapa.fitBounds(layer.getBounds(), { maxZoom: 12, padding: [30, 30] });
         layer.openPopup(layer.getBounds().getCenter());
+        resaltar(layer);
+        mostrarComuna(datos[cod], layer.feature.properties.comuna);
         input.value = '';
         ocultarLista();
       }
