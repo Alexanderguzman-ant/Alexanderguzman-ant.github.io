@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observatorio territorial de situación de calle — Alexander Guzmán</title>
+  <meta name="description" content="Observatorio territorial de situación de calle en Chile: mapa interactivo comunal con datos del Censo 2024 y el Índice de Vulnerabilidad Socioterritorial (SIVUST).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ---------- Observatorio ---------- */
+    .obs-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .map-box {
+      background: var(--bg-panel);
+      border: 1px solid #2f2f2f;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .map-toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .map-toolbar label { font-size: 14px; color: var(--text-muted); }
+
+    .map-toolbar select {
+      background: var(--bg-well);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .toggle-circles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-circles input { accent-color: var(--accent); cursor: pointer; }
+
+    #mapa {
+      height: 640px;
+      border-radius: 10px;
+      background: #0d0d0d;
+    }
+
+    /* Leyenda del coroplético */
+    .leyenda {
+      background: rgba(18, 18, 18, 0.88);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .leyenda b { display: block; margin-bottom: 4px; font-size: 13px; }
+
+    .leyenda .sw {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      margin-right: 7px;
+      vertical-align: -2px;
+    }
+
+    /* Panel lateral */
+    .panel-box {
+      background: var(--bg-panel);
+      border: 1px solid #2f2f2f;
+      border-radius: 14px;
+      padding: 22px 24px;
+    }
+
+    .panel-box h3 { font-size: 18px; margin-bottom: 14px; font-weight: 600; }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .kpi {
+      background: var(--bg-well);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .kpi .valor { font-size: 24px; font-weight: 700; color: var(--accent-hover); }
+    .kpi .etiqueta { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Top 10 barras */
+    .top10-row { margin-bottom: 9px; font-size: 13.5px; }
+
+    .top10-row .lbl {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .top10-row .lbl b { color: var(--text); font-weight: 600; }
+
+    .top10-bar {
+      background: #2a2a2a;
+      border-radius: 6px;
+      height: 9px;
+      overflow: hidden;
+    }
+
+    .top10-bar > div {
+      background: var(--accent);
+      height: 100%;
+      border-radius: 6px;
+    }
+
+    /* Popup comunal */
+    .popup-comuna h4 { font-size: 15px; margin-bottom: 6px; color: #1a1a1a; }
+    .popup-comuna table { font-size: 13px; border-collapse: collapse; }
+    .popup-comuna td { padding: 1px 4px; }
+    .popup-comuna td:first-child { color: #555; }
+
+    /* Nota metodológica y fuentes */
+    .fuentes {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px 40px;
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    .fuentes p { margin-bottom: 8px; }
+
+    @media (max-width: 900px) {
+      .obs-layout { grid-template-columns: 1fr; }
+      #mapa { height: 60vh; min-height: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Alexander Guzmán</a>
+    <div class="nav-links">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#sobre-mi">Sobre mí</a>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <section class="container">
+    <a class="back-link" href="index.html#proyectos">← Volver a proyectos</a>
+    <h2 class="section-title">Observatorio territorial de situación de calle</h2>
+    <p style="text-align:center; color: var(--text-muted); max-width: 760px; margin: -20px auto 36px;">
+      El Censo 2024 contó 21.750 personas en situación de calle en Chile. Este observatorio cruza esa
+      cifra comunal con el Índice de Vulnerabilidad Socioterritorial (SIVUST) para explorar dónde se
+      concentra la calle y cómo se relaciona con la vulnerabilidad de cada territorio.
+    </p>
+
+    <div class="obs-layout">
+      <!-- Mapa -->
+      <div class="map-box">
+        <div class="map-toolbar">
+          <label for="sel-region">Región:</label>
+          <select id="sel-region">
+            <option value="">Nacional</option>
+          </select>
+          <label class="toggle-circles">
+            <input type="checkbox" id="chk-circles" checked>
+            Círculos proporcionales por n° de personas en calle
+          </label>
+        </div>
+        <div id="mapa"></div>
+      </div>
+
+      <!-- Panel -->
+      <div class="panel-box">
+        <h3>Indicadores nacionales</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="valor" id="kpi-total">—</div><div class="etiqueta">Personas en situación de calle (Censo 2024)</div></div>
+          <div class="kpi"><div class="valor" id="kpi-hombres">—</div><div class="etiqueta">% hombres</div></div>
+          <div class="kpi"><div class="valor" id="kpi-edad">—</div><div class="etiqueta">Edad promedio</div></div>
+          <div class="kpi"><div class="valor" id="kpi-disc">—</div><div class="etiqueta">% con discapacidad</div></div>
+        </div>
+        <h3>Top 10 comunas por personas en calle</h3>
+        <div id="top10"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fuentes">
+    <p><b>Fuentes:</b> INE, Censo de Población y Vivienda 2024, microdatos (dic-2025); Ministerio de
+    Desarrollo Social, SIVUST/IGVUST (oct-2025), CC BY 4.0.</p>
+    <p><b>Nota metodológica:</b> datos agregados a nivel comunal; los promedios y porcentajes comunales
+    se ponderan por el número de personas en situación de calle. En el cuartil de vulnerabilidad,
+    1 = mayor vulnerabilidad y 4 = menor. Las comunas en gris no registran dato en alguna de las dos
+    fuentes.</p>
+  </div>
+
+  <footer>
+    Alexander Guzmán Yañez · Antropólogo · Santiago de Chile
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    'use strict';
+
+    var REGIONES = {
+      15: 'Arica y Parinacota', 1: 'Tarapacá', 2: 'Antofagasta', 3: 'Atacama',
+      4: 'Coquimbo', 5: 'Valparaíso', 13: 'Metropolitana', 6: "O'Higgins",
+      7: 'Maule', 16: 'Ñuble', 8: 'Biobío', 9: 'La Araucanía', 14: 'Los Ríos',
+      10: 'Los Lagos', 11: 'Aysén', 12: 'Magallanes'
+    };
+    var ORDEN_REGIONES = [15, 1, 2, 3, 4, 5, 13, 6, 7, 16, 8, 9, 14, 10, 11, 12];
+
+    // Escala coroplética: cuartil 1 = MAYOR vulnerabilidad
+    var COLORES_CUARTIL = { 1: '#b2182b', 2: '#ef8a62', 3: '#92c5de', 4: '#2166ac' };
+    var COLOR_SIN_DATO = '#4a4a4a';
+
+    var fmt = function (n) { return n.toLocaleString('es-CL'); };
+    var fmtPct = function (x) { return x.toLocaleString('es-CL', { maximumFractionDigits: 1 }) + '%'; };
+
+    function colorComuna(d) {
+      if (!d || d.c_ig_nac == null) return COLOR_SIN_DATO;
+      return COLORES_CUARTIL[d.c_ig_nac] || COLOR_SIN_DATO;
+    }
+
+    function estilo(feature, datos) {
+      var d = datos[String(feature.properties.cod_com)];
+      return {
+        fillColor: colorComuna(d),
+        weight: 0.6,
+        color: '#222',
+        fillOpacity: 0.85
+      };
+    }
+
+    function popupHtml(d, cod) {
+      var nombre = d && d.comuna ? d.comuna : 'Comuna ' + cod;
+      if (!d) return '<div class="popup-comuna"><h4>' + nombre + '</h4>Sin datos</div>';
+      var filas = [
+        ['Personas en calle', d.n_psc > 0 ? fmt(d.n_psc) : 'Sin registro'],
+        ['Cuartil vulnerabilidad', d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d'],
+        ['Escolaridad promedio', d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d'],
+        ['% discapacidad', d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d'],
+        ['% hombres', d.pct_hombres != null ? fmtPct(d.pct_hombres) : 's/d']
+      ];
+      var html = '<div class="popup-comuna"><h4>' + nombre + '</h4><table>';
+      filas.forEach(function (f) { html += '<tr><td>' + f[0] + '</td><td><b>' + f[1] + '</b></td></tr>'; });
+      return html + '</table></div>';
+    }
+
+    Promise.all([
+      fetch('assets/observatorio/comunas.geojson').then(function (r) { return r.json(); }),
+      fetch('assets/observatorio/comuna_indicadores.json').then(function (r) { return r.json(); })
+    ]).then(function (res) {
+      var geojson = res[0], datos = res[1];
+
+      // ---------- Indicadores nacionales (ponderados por n_psc) ----------
+      var total = 0, wH = 0, wE = 0, wD = 0, nH = 0, nE = 0, nD = 0;
+      Object.keys(datos).forEach(function (cod) {
+        var d = datos[cod];
+        total += d.n_psc;
+        if (d.n_psc > 0) {
+          if (d.pct_hombres != null) { wH += d.pct_hombres * d.n_psc; nH += d.n_psc; }
+          if (d.edad_promedio != null) { wE += d.edad_promedio * d.n_psc; nE += d.n_psc; }
+          if (d.pct_discapacidad != null) { wD += d.pct_discapacidad * d.n_psc; nD += d.n_psc; }
+        }
+      });
+      document.getElementById('kpi-total').textContent = fmt(total);
+      document.getElementById('kpi-hombres').textContent = fmtPct(wH / nH);
+      document.getElementById('kpi-edad').textContent = (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años';
+      document.getElementById('kpi-disc').textContent = fmtPct(wD / nD);
+
+      // ---------- Top 10 ----------
+      var top = Object.keys(datos)
+        .map(function (cod) { return datos[cod]; })
+        .filter(function (d) { return d.n_psc > 0; })
+        .sort(function (a, b) { return b.n_psc - a.n_psc; })
+        .slice(0, 10);
+      var maxN = top[0].n_psc;
+      document.getElementById('top10').innerHTML = top.map(function (d) {
+        var ancho = Math.max(2, (d.n_psc / maxN) * 100);
+        return '<div class="top10-row"><div class="lbl"><b>' + d.comuna + '</b><span>' + fmt(d.n_psc) + '</span></div>' +
+          '<div class="top10-bar"><div style="width:' + ancho.toFixed(1) + '%"></div></div></div>';
+      }).join('');
+
+      // ---------- Mapa ----------
+      var mapa = L.map('mapa', { scrollWheelZoom: true }).setView([-35.7, -71.3], 4);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        maxZoom: 18
+      }).addTo(mapa);
+
+      var capaComunas = L.geoJSON(geojson, {
+        style: function (f) { return estilo(f, datos); },
+        onEachFeature: function (feature, layer) {
+          var cod = String(feature.properties.cod_com);
+          layer.bindPopup(popupHtml(datos[cod], cod));
+          layer.on('mouseover', function () {
+            layer.setStyle({ weight: 2, color: '#fff' });
+            layer.bringToFront();
+          });
+          layer.on('mouseout', function () {
+            capaComunas.resetStyle(layer);
+          });
+        }
+      }).addTo(mapa);
+      mapa.fitBounds(capaComunas.getBounds());
+
+      // ---------- Círculos proporcionales ----------
+      var capaCircles = L.layerGroup();
+      capaComunas.eachLayer(function (layer) {
+        var d = datos[String(layer.feature.properties.cod_com)];
+        if (!d || d.n_psc <= 0) return;
+        var centro = layer.getBounds().getCenter();
+        L.circleMarker(centro, {
+          radius: 3 + Math.sqrt(d.n_psc) * 0.55,
+          color: '#1e90ff',
+          weight: 1,
+          fillColor: '#1e90ff',
+          fillOpacity: 0.35
+        }).bindPopup(popupHtml(d, String(layer.feature.properties.cod_com))).addTo(capaCircles);
+      });
+      capaCircles.addTo(mapa);
+      document.getElementById('chk-circles').addEventListener('change', function (e) {
+        if (e.target.checked) capaCircles.addTo(mapa);
+        else mapa.removeLayer(capaCircles);
+      });
+
+      // ---------- Leyenda ----------
+      var leyenda = L.control({ position: 'bottomright' });
+      leyenda.onAdd = function () {
+        var div = L.DomUtil.create('div', 'leyenda');
+        div.innerHTML = '<b>Cuartil de vulnerabilidad (IGVUST)</b>' +
+          [1, 2, 3, 4].map(function (q) {
+            return '<span class="sw" style="background:' + COLORES_CUARTIL[q] + '"></span>Cuartil ' + q +
+              (q === 1 ? ' (mayor)' : q === 4 ? ' (menor)' : '') + '<br>';
+          }).join('') +
+          '<span class="sw" style="background:' + COLOR_SIN_DATO + '"></span>Sin dato';
+        return div;
+      };
+      leyenda.addTo(mapa);
+
+      // ---------- Selector de región ----------
+      var sel = document.getElementById('sel-region');
+      ORDEN_REGIONES.forEach(function (cod) {
+        var op = document.createElement('option');
+        op.value = cod;
+        op.textContent = REGIONES[cod];
+        sel.appendChild(op);
+      });
+      sel.addEventListener('change', function () {
+        if (!sel.value) { mapa.fitBounds(capaComunas.getBounds()); return; }
+        var reg = parseInt(sel.value, 10);
+        var grupo = L.featureGroup();
+        capaComunas.eachLayer(function (layer) {
+          if (Math.floor(layer.feature.properties.cod_com / 1000) === reg) {
+            grupo.addLayer(L.rectangle(layer.getBounds()));
+          }
+        });
+        if (grupo.getLayers().length) mapa.fitBounds(grupo.getBounds(), { padding: [20, 20] });
+      });
+    }).catch(function (err) {
+      document.getElementById('mapa').innerHTML =
+        '<p style="padding:24px; color:#bdc3c7;">No se pudieron cargar los datos del mapa. ' +
+        'Este sitio es estático: ábrelo desde GitHub Pages o un servidor local (no file://).</p>';
+      console.error(err);
+    });
+  </script>
+
+</body>
+</html>
