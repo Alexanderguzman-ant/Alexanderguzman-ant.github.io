@@ -51,8 +51,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 168,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1335,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "1403": {
@@ -79,8 +79,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 46,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 2858,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "1405": {
@@ -135,8 +135,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 329,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1472,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "2104": {
@@ -177,8 +177,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 198,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 256,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "2203": {
@@ -317,8 +317,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 103,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4788,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "3303": {
@@ -401,8 +401,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 85,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4335,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "4105": {
@@ -457,8 +457,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 120,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9639,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "4203": {
@@ -541,8 +541,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 41,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12076,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "4305": {
@@ -555,8 +555,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 108,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4334,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5101": {
@@ -611,8 +611,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 89,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 904,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5105": {
@@ -709,8 +709,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 283,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 11855,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5304": {
@@ -751,8 +751,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 173,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 20015,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5403": {
@@ -765,8 +765,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 255,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7561,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5404": {
@@ -779,8 +779,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 195,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10206,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5405": {
@@ -793,8 +793,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 317,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7980,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5501": {
@@ -835,8 +835,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 188,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 19286,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5504": {
@@ -849,8 +849,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 324,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 24939,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5506": {
@@ -947,8 +947,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 334,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 13171,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5701": {
@@ -1003,8 +1003,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 272,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7269,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5705": {
@@ -1017,8 +1017,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 101,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 17336,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5706": {
@@ -1031,8 +1031,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 206,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15134,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5801": {
@@ -1073,8 +1073,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 201,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 19778,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "5804": {
@@ -1129,8 +1129,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 66,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7916,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6104": {
@@ -1143,8 +1143,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 150,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 21373,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6105": {
@@ -1255,8 +1255,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 219,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 14243,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6113": {
@@ -1283,8 +1283,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 73,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 13558,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6115": {
@@ -1353,8 +1353,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 151,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4609,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6203": {
@@ -1367,8 +1367,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 144,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 8852,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6204": {
@@ -1409,8 +1409,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 56,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7228,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6301": {
@@ -1493,8 +1493,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 247,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 13060,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6307": {
@@ -1535,8 +1535,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 135,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4559,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "6310": {
@@ -1591,8 +1591,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 115,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9519,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7104": {
@@ -1605,8 +1605,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 57,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 3990,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7105": {
@@ -1633,8 +1633,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 214,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9229,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7107": {
@@ -1647,8 +1647,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 182,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9181,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7108": {
@@ -1661,8 +1661,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 194,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 14276,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7109": {
@@ -1675,8 +1675,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 127,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 47380,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7110": {
@@ -1689,8 +1689,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 175,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 11230,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7201": {
@@ -1717,8 +1717,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 23,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9446,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7203": {
@@ -1731,8 +1731,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 13,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 8578,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7301": {
@@ -1759,8 +1759,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 125,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10775,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7303": {
@@ -1773,8 +1773,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 165,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6892,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7304": {
@@ -1801,8 +1801,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 158,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 11266,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7306": {
@@ -1829,8 +1829,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 300,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 19427,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7308": {
@@ -1843,8 +1843,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 205,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 30113,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7309": {
@@ -1857,8 +1857,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 211,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4716,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7401": {
@@ -1885,8 +1885,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 181,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 22637,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7403": {
@@ -1913,8 +1913,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 142,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 45323,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7405": {
@@ -1955,8 +1955,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 110,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 17919,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "7408": {
@@ -2025,8 +2025,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 49,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12958,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8105": {
@@ -2039,8 +2039,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 71,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 25795,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8106": {
@@ -2095,8 +2095,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 74,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 14947,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8110": {
@@ -2193,8 +2193,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 25,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5905,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8205": {
@@ -2235,8 +2235,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 20,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10208,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8301": {
@@ -2263,8 +2263,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 18,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4373,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8303": {
@@ -2291,8 +2291,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 130,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 23706,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8305": {
@@ -2305,8 +2305,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 106,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 29036,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8306": {
@@ -2319,8 +2319,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 107,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 26140,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8307": {
@@ -2333,8 +2333,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 128,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10723,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8308": {
@@ -2347,8 +2347,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 154,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4440,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8309": {
@@ -2361,8 +2361,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 62,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9700,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8310": {
@@ -2375,8 +2375,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 27,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 3575,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8311": {
@@ -2389,8 +2389,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 90,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 14075,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8312": {
@@ -2403,8 +2403,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 137,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15729,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8313": {
@@ -2417,8 +2417,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 58,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 23170,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "8314": {
@@ -2431,8 +2431,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 1,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6016,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9101": {
@@ -2473,8 +2473,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 83,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 19177,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9104": {
@@ -2487,8 +2487,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 16,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7733,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9105": {
@@ -2501,8 +2501,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 69,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 26164,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9106": {
@@ -2515,8 +2515,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 19,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12710,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9107": {
@@ -2529,8 +2529,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 34,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 14148,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9108": {
@@ -2543,8 +2543,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 180,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 41936,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9109": {
@@ -2571,8 +2571,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 35,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6796,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9111": {
@@ -2585,8 +2585,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 42,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 33988,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9112": {
@@ -2613,8 +2613,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 40,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7438,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9114": {
@@ -2655,8 +2655,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 2,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12877,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9117": {
@@ -2669,8 +2669,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 7,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15639,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9118": {
@@ -2683,8 +2683,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 14,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10041,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9119": {
@@ -2697,8 +2697,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 124,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 31575,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9120": {
@@ -2767,8 +2767,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 65,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 18536,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9204": {
@@ -2781,8 +2781,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 11,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7730,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9205": {
@@ -2795,8 +2795,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 24,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10247,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9206": {
@@ -2809,8 +2809,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 47,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7348,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9207": {
@@ -2823,8 +2823,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 9,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9253,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9208": {
@@ -2851,8 +2851,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 80,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10686,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "9210": {
@@ -2907,8 +2907,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 166,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 36474,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10103": {
@@ -2921,8 +2921,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 52,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4199,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10104": {
@@ -2935,8 +2935,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 60,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12320,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10105": {
@@ -2949,8 +2949,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 267,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 22554,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10106": {
@@ -2977,8 +2977,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 249,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 18088,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10108": {
@@ -2991,8 +2991,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 99,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15063,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10109": {
@@ -3047,8 +3047,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 156,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 16078,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10204": {
@@ -3061,8 +3061,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 92,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 3662,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10205": {
@@ -3089,8 +3089,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 79,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4048,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10207": {
@@ -3145,8 +3145,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 21,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7678,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10301": {
@@ -3173,8 +3173,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 162,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 8865,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10303": {
@@ -3229,8 +3229,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 5,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 7776,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10307": {
@@ -3243,8 +3243,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 93,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10883,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10401": {
@@ -3257,8 +3257,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 70,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4025,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10402": {
@@ -3271,8 +3271,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 265,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 3062,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10403": {
@@ -3285,8 +3285,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 139,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 9480,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "10404": {
@@ -3299,8 +3299,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 227,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1903,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11101": {
@@ -3327,8 +3327,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 105,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 779,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11201": {
@@ -3355,8 +3355,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 237,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5137,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11203": {
@@ -3369,8 +3369,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 146,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1598,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11301": {
@@ -3383,8 +3383,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 196,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 3458,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11302": {
@@ -3397,8 +3397,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 328,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 647,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11303": {
@@ -3411,8 +3411,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 172,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 505,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11401": {
@@ -3425,8 +3425,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 59,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 4905,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "11402": {
@@ -3439,8 +3439,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 32,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 2723,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12101": {
@@ -3467,8 +3467,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 288,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 269,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12103": {
@@ -3481,8 +3481,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 339,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 102,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12104": {
@@ -3495,8 +3495,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 276,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 241,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12201": {
@@ -3509,8 +3509,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 311,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1750,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12202": {
@@ -3523,8 +3523,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 314,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 60,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12301": {
@@ -3537,8 +3537,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 315,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6809,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12302": {
@@ -3551,8 +3551,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 336,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 431,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12303": {
@@ -3565,8 +3565,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 184,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 157,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "12401": {
@@ -3593,8 +3593,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 301,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 203,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "13101": {
@@ -4167,8 +4167,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 4,
   "rank_nac": 298,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 25491,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "13404": {
@@ -4237,8 +4237,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 197,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15352,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "13505": {
@@ -4251,8 +4251,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 81,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 11108,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "13601": {
@@ -4349,8 +4349,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 50,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5501,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14103": {
@@ -4363,8 +4363,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 169,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 16876,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14104": {
@@ -4391,8 +4391,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 64,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 8074,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14106": {
@@ -4405,8 +4405,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 122,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 22973,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14107": {
@@ -4461,8 +4461,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 61,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 15635,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14203": {
@@ -4475,8 +4475,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 112,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 10527,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "14204": {
@@ -4489,8 +4489,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 3,
   "rank_nac": 176,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 33363,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "15101": {
@@ -4517,8 +4517,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 30,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 861,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "15201": {
@@ -4531,8 +4531,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 129,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 1547,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "15202": {
@@ -4545,8 +4545,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 3,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 508,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16101": {
@@ -4573,8 +4573,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 117,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 23863,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16103": {
@@ -4601,8 +4601,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 4,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 13186,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16105": {
@@ -4615,8 +4615,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 76,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 8930,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16106": {
@@ -4629,8 +4629,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 48,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12502,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16107": {
@@ -4657,8 +4657,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 38,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 17405,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16109": {
@@ -4671,8 +4671,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 2,
   "rank_nac": 140,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 18680,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16201": {
@@ -4727,8 +4727,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 17,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5763,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16205": {
@@ -4741,8 +4741,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 6,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5203,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16206": {
@@ -4755,8 +4755,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 33,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6508,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16207": {
@@ -4769,8 +4769,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 53,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 6124,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16301": {
@@ -4811,8 +4811,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 29,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 12797,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16304": {
@@ -4825,8 +4825,8 @@
   "escolaridad_promedio": null,
   "c_ig_nac": 1,
   "rank_nac": 39,
-  "pob_total": null,
-  "psc_x1000": null,
+  "pob_total": 5245,
+  "psc_x1000": 0.0,
   "bajo_umbral": null
  },
  "16305": {
