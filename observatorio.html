@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Observatorio territorial de situación de calle — Alexander Guzmán</title>
+  <title>Observatorio territorial de situación calle — Alexander Guzmán</title>
   <meta name="description" content="Observatorio territorial de situación de calle en Chile: mapa interactivo comunal con datos del Censo 2024 y el Índice de Vulnerabilidad Socioterritorial (SIVUST).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -174,6 +174,9 @@
       margin-bottom: 26px;
     }
 
+    /* Vista comuna con 7 KPI: el último ocupa el ancho completo de la fila */
+    .kpis.impar .kpi:last-child { grid-column: 1 / -1; }
+
     .kpi-nota {
       color: var(--text-muted);
       font-size: 12px;
@@ -255,7 +258,7 @@
 
   <section class="container">
     <a class="back-link" href="index.html#proyectos">← Volver a proyectos</a>
-    <h2 class="section-title">Observatorio territorial de situación de calle</h2>
+    <h2 class="section-title">Observatorio territorial de situación calle</h2>
     <p style="text-align:center; color: var(--text-muted); max-width: 760px; margin: -20px auto 36px;">
       El Censo 2024 contó 21.750 personas en situación de calle en Chile. Este observatorio cruza esa
       cifra comunal con el Índice de Vulnerabilidad Socioterritorial (SIVUST) para explorar dónde se
@@ -292,6 +295,7 @@
           <div class="kpi"><div class="valor" id="kpi-disc">—</div><div class="etiqueta">% con discapacidad</div></div>
           <div class="kpi"><div class="valor" id="kpi-mujeres">—</div><div class="etiqueta">% mujeres</div></div>
           <div class="kpi"><div class="valor" id="kpi-tasa">—</div><div class="etiqueta">Tasa nacional por 1.000 hab.</div></div>
+          <div class="kpi" id="kpi-extra" style="display:none;"><div class="valor">—</div><div class="etiqueta"></div></div>
         </div>
         <div id="kpi-nota-umbral" class="kpi-nota" style="display:none;">* tasa inestable: población bajo umbral estadístico (INE)</div>
         <button type="button" id="btn-nacional" class="btn-nacional" style="display:none;">← Volver a vista nacional</button>
@@ -538,9 +542,11 @@
       var btnNacional = document.getElementById('btn-nacional');
 
       var notaUmbral = document.getElementById('kpi-nota-umbral');
+      var kpiExtra = document.getElementById('kpi-extra');
+      var kpisGrid = document.querySelector('.kpis');
 
       var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa nacional por 1.000 hab.'];
-      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% mujeres', 'PSC por 1.000 hab.'];
+      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% hombres', '% mujeres', 'PSC por 1.000 hab.'];
 
       function mostrarIndicadores(titulo, valores, etiquetas) {
         panelTitulo.textContent = titulo;
@@ -550,6 +556,8 @@
 
       function mostrarNacional() {
         mostrarIndicadores('Indicadores nacionales', VALORES_NACIONAL, ETIQUETAS_NACIONAL);
+        kpiExtra.style.display = 'none';
+        kpisGrid.classList.remove('impar');
         notaUmbral.style.display = 'none';
         btnNacional.style.display = 'none';
       }
@@ -560,10 +568,13 @@
           d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d',
           d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d',
           d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d',
+          d.pct_hombres != null ? fmtPct(d.pct_hombres) : 's/d',
           d.pct_hombres != null ? fmtPct(100 - d.pct_hombres) : 's/d',
           d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d'
-        ] : ['s/d', 's/d', 's/d', 's/d', 's/d', 's/d'];
+        ] : ['s/d', 's/d', 's/d', 's/d', 's/d', 's/d', 's/d'];
         mostrarIndicadores('Indicadores — ' + nombre, valores, ETIQUETAS_COMUNA);
+        kpiExtra.style.display = 'block';
+        kpisGrid.classList.add('impar');
         notaUmbral.style.display = d && d.bajo_umbral ? 'block' : 'none';
         btnNacional.style.display = 'inline-block';
       }

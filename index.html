@@ -157,7 +157,7 @@
             <span class="tag">Visualización</span>
             <span class="tag">Análisis territorial</span>
           </div>
-          <h3>Observatorio territorial de situación de calle</h3>
+          <h3>Observatorio territorial de situación calle</h3>
           <p>Mapa interactivo comunal que cruza el Censo 2024 de personas en situación de calle con el
           índice de vulnerabilidad socioterritorial (SIVUST): coroplético por cuartil de vulnerabilidad,
           indicadores nacionales y ranking comunal.</p>
@@ -189,6 +189,17 @@
   <footer>
     Alexander Guzmán Yañez · Antropólogo · Santiago de Chile
   </footer>
+
+  <script>
+    // Doble clic sobre la tarjeta abre el proyecto (el botón sigue funcionando con un clic)
+    document.querySelectorAll('.project-card').forEach(function (card) {
+      card.addEventListener('dblclick', function (e) {
+        if (e.target.closest('a')) return;
+        var enlace = card.querySelector('a.btn');
+        if (enlace) window.location.href = enlace.href;
+      });
+    });
+  </script>
 
 </body>
 </html>
