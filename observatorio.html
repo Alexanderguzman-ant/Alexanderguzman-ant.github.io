@@ -174,8 +174,11 @@
       margin-bottom: 26px;
     }
 
-    /* Con 5 KPI, el último ocupa el ancho completo de la fila */
-    .kpis .kpi:last-child { grid-column: 1 / -1; }
+    .kpi-nota {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: -14px 0 20px;
+    }
 
     .kpi {
       background: var(--bg-well);
@@ -288,7 +291,9 @@
           <div class="kpi"><div class="valor" id="kpi-edad">—</div><div class="etiqueta">Edad promedio</div></div>
           <div class="kpi"><div class="valor" id="kpi-disc">—</div><div class="etiqueta">% con discapacidad</div></div>
           <div class="kpi"><div class="valor" id="kpi-mujeres">—</div><div class="etiqueta">% mujeres</div></div>
+          <div class="kpi"><div class="valor" id="kpi-tasa">—</div><div class="etiqueta">Tasa nacional por 1.000 hab.</div></div>
         </div>
+        <div id="kpi-nota-umbral" class="kpi-nota" style="display:none;">* tasa inestable: población bajo umbral estadístico (INE)</div>
         <button type="button" id="btn-nacional" class="btn-nacional" style="display:none;">← Volver a vista nacional</button>
         <h3>Top 10 comunas por personas en calle</h3>
         <div id="top10"></div>
@@ -303,6 +308,10 @@
     se ponderan por el número de personas en situación de calle. En el cuartil de vulnerabilidad,
     1 = mayor vulnerabilidad y 4 = menor. Las comunas en gris no registran dato en alguna de las dos
     fuentes.</p>
+    <p>La tasa por 1.000 habitantes usa la población censada comunal como denominador.
+    A nivel nacional, 51 comunas (15%) están bajo el umbral de publicación del INE;
+    de ellas, 6 registran personas en situación de calle y sus tasas se señalan con *
+    por la inestabilidad de los denominadores pequeños.</p>
   </div>
 
   <footer>
@@ -328,6 +337,7 @@
 
     var fmt = function (n) { return n.toLocaleString('es-CL'); };
     var fmtPct = function (x) { return x.toLocaleString('es-CL', { maximumFractionDigits: 1 }) + '%'; };
+    var fmtTasa = function (x) { return x.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
 
     function colorComuna(d) {
       if (!d || d.c_ig_nac == null) return COLOR_SIN_DATO;
@@ -349,6 +359,7 @@
       if (!d) return '<div class="popup-comuna"><h4>' + nombre + '</h4>Sin datos</div>';
       var filas = [
         ['Personas en calle', d.n_psc > 0 ? fmt(d.n_psc) : 'Sin registro'],
+        ['PSC por 1.000 hab.', d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d'],
         ['Cuartil vulnerabilidad', d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d'],
         ['Escolaridad promedio', d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d'],
         ['% discapacidad', d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d'],
@@ -357,7 +368,11 @@
       ];
       var html = '<div class="popup-comuna"><h4>' + nombre + '</h4><table>';
       filas.forEach(function (f) { html += '<tr><td>' + f[0] + '</td><td><b>' + f[1] + '</b></td></tr>'; });
-      return html + '</table></div>';
+      html += '</table>';
+      if (d.bajo_umbral) {
+        html += '<div style="font-size:11px; color:#777; margin-top:4px;">* tasa inestable: población bajo umbral estadístico (INE)</div>';
+      }
+      return html + '</div>';
     }
 
     Promise.all([
@@ -367,6 +382,8 @@
       var geojson = res[0], datos = res[1];
 
       // ---------- Indicadores nacionales (ponderados por n_psc) ----------
+      // Población total Censo 2024: denominador de la tasa nacional (incluye comunas sin PSC)
+      var POB_NACIONAL = 18480432;
       var total = 0, wH = 0, wE = 0, wD = 0, nH = 0, nE = 0, nD = 0;
       Object.keys(datos).forEach(function (cod) {
         var d = datos[cod];
@@ -382,13 +399,15 @@
         fmtPct(wH / nH),
         (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años',
         fmtPct(wD / nD),
-        fmtPct(100 - wH / nH)
+        fmtPct(100 - wH / nH),
+        fmtTasa(1000 * total / POB_NACIONAL)
       ];
       document.getElementById('kpi-total').textContent = VALORES_NACIONAL[0];
       document.getElementById('kpi-hombres').textContent = VALORES_NACIONAL[1];
       document.getElementById('kpi-edad').textContent = VALORES_NACIONAL[2];
       document.getElementById('kpi-disc').textContent = VALORES_NACIONAL[3];
       document.getElementById('kpi-mujeres').textContent = VALORES_NACIONAL[4];
+      document.getElementById('kpi-tasa').textContent = VALORES_NACIONAL[5];
 
       // ---------- Top 10 ----------
       var top = Object.keys(datos)
@@ -495,8 +514,10 @@
       var kpiEtiquetas = document.querySelectorAll('.kpis .etiqueta');
       var btnNacional = document.getElementById('btn-nacional');
 
-      var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres'];
-      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% mujeres'];
+      var notaUmbral = document.getElementById('kpi-nota-umbral');
+
+      var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa nacional por 1.000 hab.'];
+      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% mujeres', 'PSC por 1.000 hab.'];
 
       function mostrarIndicadores(titulo, valores, etiquetas) {
         panelTitulo.textContent = titulo;
@@ -506,6 +527,7 @@
 
       function mostrarNacional() {
         mostrarIndicadores('Indicadores nacionales', VALORES_NACIONAL, ETIQUETAS_NACIONAL);
+        notaUmbral.style.display = 'none';
         btnNacional.style.display = 'none';
       }
 
@@ -515,9 +537,11 @@
           d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d',
           d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d',
           d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d',
-          d.pct_hombres != null ? fmtPct(100 - d.pct_hombres) : 's/d'
-        ] : ['s/d', 's/d', 's/d', 's/d', 's/d'];
+          d.pct_hombres != null ? fmtPct(100 - d.pct_hombres) : 's/d',
+          d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d'
+        ] : ['s/d', 's/d', 's/d', 's/d', 's/d', 's/d'];
         mostrarIndicadores('Indicadores — ' + nombre, valores, ETIQUETAS_COMUNA);
+        notaUmbral.style.display = d && d.bajo_umbral ? 'block' : 'none';
         btnNacional.style.display = 'inline-block';
       }
 
