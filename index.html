@@ -191,9 +191,9 @@
   </footer>
 
   <script>
-    // Doble clic sobre la tarjeta abre el proyecto (el botón sigue funcionando con un clic)
+    // Clic sobre la tarjeta abre el proyecto (el botón sigue funcionando por su cuenta)
     document.querySelectorAll('.project-card').forEach(function (card) {
-      card.addEventListener('dblclick', function (e) {
+      card.addEventListener('click', function (e) {
         if (e.target.closest('a')) return;
         var enlace = card.querySelector('a.btn');
         if (enlace) window.location.href = enlace.href;
