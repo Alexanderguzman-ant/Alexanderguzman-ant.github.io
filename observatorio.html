@@ -354,6 +354,29 @@
       };
     }
 
+    function centroComuna(feature) {
+      // Centroide del polígono de mayor área: evita que islas alejadas del territorio
+      // continental (Isla de Pascua/Sala y Gómez, islas de Lebu) desplacen el punto.
+      var geom = feature.geometry;
+      var polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+      var mejor = null, mejorArea = -1;
+      polys.forEach(function (poly) {
+        var ring = poly[0], area = 0, cx = 0, cy = 0;
+        for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+          var cruz = ring[j][0] * ring[i][1] - ring[i][0] * ring[j][1];
+          area += cruz;
+          cx += (ring[j][0] + ring[i][0]) * cruz;
+          cy += (ring[j][1] + ring[i][1]) * cruz;
+        }
+        area /= 2;
+        if (Math.abs(area) > mejorArea) {
+          mejorArea = Math.abs(area);
+          mejor = L.latLng(cy / (6 * area), cx / (6 * area));
+        }
+      });
+      return mejor;
+    }
+
     function popupHtml(d, cod) {
       var nombre = d && d.comuna ? d.comuna : 'Comuna ' + cod;
       if (!d) return '<div class="popup-comuna"><h4>' + nombre + '</h4>Sin datos</div>';
@@ -450,7 +473,7 @@
       capaComunas.eachLayer(function (layer) {
         var d = datos[String(layer.feature.properties.cod_com)];
         if (!d || d.n_psc <= 0) return;
-        var centro = layer.getBounds().getCenter();
+        var centro = centroComuna(layer.feature);
         L.circleMarker(centro, {
           radius: 3 + Math.sqrt(d.n_psc) * 0.55,
           color: '#1e90ff',
@@ -601,7 +624,7 @@
         var layer = capasPorCod[cod];
         if (!layer) return;
         mapa.fitBounds(layer.getBounds(), { maxZoom: 12, padding: [30, 30] });
-        layer.openPopup(layer.getBounds().getCenter());
+        layer.openPopup(centroComuna(layer.feature));
         resaltar(layer);
         mostrarComuna(datos[cod], layer.feature.properties.comuna);
         input.value = '';
