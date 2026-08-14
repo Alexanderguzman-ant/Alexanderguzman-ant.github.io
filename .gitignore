@@ -1,2 +1,5 @@
 # Datos crudos y microdatos: no subir al repo
-datos/
+datos/*
+# Excepciones: análisis reproducible y resultados agregados (sin microdatos)
+!datos/analisis_hurdle_psc.py
+!datos/resultados_hurdle_psc.csv
