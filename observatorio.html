@@ -524,7 +524,13 @@
         sel.appendChild(op);
       });
       sel.addEventListener('change', function () {
-        if (!sel.value) { mapa.fitBounds(capaComunas.getBounds()); return; }
+        if (!sel.value) {
+          mostrarNacional();
+          mapa.closePopup();
+          quitarResalte();
+          mapa.fitBounds(capaComunas.getBounds());
+          return;
+        }
         var reg = parseInt(sel.value, 10);
         var grupo = L.featureGroup();
         capaComunas.eachLayer(function (layer) {
@@ -533,6 +539,7 @@
           }
         });
         if (grupo.getLayers().length) mapa.fitBounds(grupo.getBounds(), { padding: [20, 20] });
+        mostrarRegion(reg);
       });
 
       // ---------- Capa de etiquetas por sobre el coroplético ----------
@@ -557,6 +564,7 @@
 
       var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa nacional por 1.000 hab.', 'Población total (Censo 2024)'];
       var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% hombres', '% mujeres', 'PSC por 1.000 hab.', 'Población comunal (Censo 2024)'];
+      var ETIQUETAS_REGION = ['Personas en situación de calle', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa regional por 1.000 hab.', 'Población regional (Censo 2024)'];
 
       function mostrarIndicadores(titulo, valores, etiquetas) {
         panelTitulo.textContent = titulo;
@@ -589,6 +597,38 @@
         kpiExtra2.style.display = 'block';
         kpisGrid.classList.remove('impar');
         notaUmbral.style.display = d && d.bajo_umbral ? 'block' : 'none';
+        btnNacional.style.display = 'inline-block';
+      }
+
+      // Agregación regional: mismas ponderaciones que la vista nacional
+      // (promedios ponderados por n_psc; tasa con población regional como denominador).
+      function mostrarRegion(reg) {
+        var total = 0, pob = 0, wH = 0, wE = 0, wD = 0, nH = 0, nE = 0, nD = 0;
+        Object.keys(datos).forEach(function (cod) {
+          if (Math.floor(cod / 1000) !== reg) return;
+          var d = datos[cod];
+          total += d.n_psc;
+          if (d.pob_total != null) pob += d.pob_total;
+          if (d.n_psc > 0) {
+            if (d.pct_hombres != null) { wH += d.pct_hombres * d.n_psc; nH += d.n_psc; }
+            if (d.edad_promedio != null) { wE += d.edad_promedio * d.n_psc; nE += d.n_psc; }
+            if (d.pct_discapacidad != null) { wD += d.pct_discapacidad * d.n_psc; nD += d.n_psc; }
+          }
+        });
+        var valores = [
+          total > 0 ? fmt(total) : 'Sin registro',
+          nH ? fmtPct(wH / nH) : 's/d',
+          nE ? (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años' : 's/d',
+          nD ? fmtPct(wD / nD) : 's/d',
+          nH ? fmtPct(100 - wH / nH) : 's/d',
+          pob > 0 ? fmtTasa(1000 * total / pob) : 's/d',
+          pob > 0 ? fmt(pob) : 's/d'
+        ];
+        mostrarIndicadores('Indicadores regionales — ' + REGIONES[reg], valores, ETIQUETAS_REGION);
+        kpiExtra.style.display = 'block';
+        kpiExtra2.style.display = 'none';
+        kpisGrid.classList.add('impar');
+        notaUmbral.style.display = 'none';
         btnNacional.style.display = 'inline-block';
       }
 
