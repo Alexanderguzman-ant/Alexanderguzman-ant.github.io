@@ -174,8 +174,9 @@
       margin-bottom: 26px;
     }
 
-    /* Vista comuna con 7 KPI: el último ocupa el ancho completo de la fila */
-    .kpis.impar .kpi:last-child { grid-column: 1 / -1; }
+    /* Vista nacional con 7 KPI: el último (kpi-extra) ocupa el ancho completo de la fila.
+       Se apunta por id porque :last-child también calzaría con kpi-extra2, que está oculto. */
+    .kpis.impar #kpi-extra { grid-column: 1 / -1; }
 
     .kpi-nota {
       color: var(--text-muted);
@@ -296,6 +297,7 @@
           <div class="kpi"><div class="valor" id="kpi-mujeres">—</div><div class="etiqueta">% mujeres</div></div>
           <div class="kpi"><div class="valor" id="kpi-tasa">—</div><div class="etiqueta">Tasa nacional por 1.000 hab.</div></div>
           <div class="kpi" id="kpi-extra" style="display:none;"><div class="valor">—</div><div class="etiqueta"></div></div>
+          <div class="kpi" id="kpi-extra2" style="display:none;"><div class="valor">—</div><div class="etiqueta"></div></div>
         </div>
         <div id="kpi-nota-umbral" class="kpi-nota" style="display:none;">* tasa inestable: población bajo umbral estadístico (INE)</div>
         <button type="button" id="btn-nacional" class="btn-nacional" style="display:none;">← Volver a vista nacional</button>
@@ -386,6 +388,7 @@
       if (!d) return '<div class="popup-comuna"><h4>' + nombre + '</h4>Sin datos</div>';
       var filas = [
         ['Personas en calle', d.n_psc > 0 ? fmt(d.n_psc) : 'Sin registro'],
+        ['Población comunal', d.pob_total != null ? fmt(d.pob_total) : 's/d'],
         ['PSC por 1.000 hab.', d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d'],
         ['Cuartil vulnerabilidad', d.c_ig_nac != null ? d.c_ig_nac + ' de 4' : 's/d'],
         ['Escolaridad promedio', d.escolaridad_promedio != null ? fmtPct(d.escolaridad_promedio).replace('%', ' años') : 's/d'],
@@ -427,7 +430,8 @@
         (wE / nE).toLocaleString('es-CL', { maximumFractionDigits: 1 }) + ' años',
         fmtPct(wD / nD),
         fmtPct(100 - wH / nH),
-        fmtTasa(1000 * total / POB_NACIONAL)
+        fmtTasa(1000 * total / POB_NACIONAL),
+        fmt(POB_NACIONAL)
       ];
       document.getElementById('kpi-total').textContent = VALORES_NACIONAL[0];
       document.getElementById('kpi-hombres').textContent = VALORES_NACIONAL[1];
@@ -435,6 +439,11 @@
       document.getElementById('kpi-disc').textContent = VALORES_NACIONAL[3];
       document.getElementById('kpi-mujeres').textContent = VALORES_NACIONAL[4];
       document.getElementById('kpi-tasa').textContent = VALORES_NACIONAL[5];
+      var kpiExtraIni = document.getElementById('kpi-extra');
+      kpiExtraIni.querySelector('.valor').textContent = VALORES_NACIONAL[6];
+      kpiExtraIni.querySelector('.etiqueta').textContent = 'Población total (Censo 2024)';
+      kpiExtraIni.style.display = 'block';
+      document.querySelector('.kpis').classList.add('impar');
 
       // ---------- Top 10 ----------
       var top = Object.keys(datos)
@@ -543,10 +552,11 @@
 
       var notaUmbral = document.getElementById('kpi-nota-umbral');
       var kpiExtra = document.getElementById('kpi-extra');
+      var kpiExtra2 = document.getElementById('kpi-extra2');
       var kpisGrid = document.querySelector('.kpis');
 
-      var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa nacional por 1.000 hab.'];
-      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% hombres', '% mujeres', 'PSC por 1.000 hab.'];
+      var ETIQUETAS_NACIONAL = ['Personas en situación de calle (Censo 2024)', '% hombres', 'Edad promedio', '% con discapacidad', '% mujeres', 'Tasa nacional por 1.000 hab.', 'Población total (Censo 2024)'];
+      var ETIQUETAS_COMUNA = ['Personas en situación de calle', 'Cuartil vulnerabilidad (IGVUST)', 'Escolaridad promedio', '% con discapacidad', '% hombres', '% mujeres', 'PSC por 1.000 hab.', 'Población comunal (Censo 2024)'];
 
       function mostrarIndicadores(titulo, valores, etiquetas) {
         panelTitulo.textContent = titulo;
@@ -556,8 +566,9 @@
 
       function mostrarNacional() {
         mostrarIndicadores('Indicadores nacionales', VALORES_NACIONAL, ETIQUETAS_NACIONAL);
-        kpiExtra.style.display = 'none';
-        kpisGrid.classList.remove('impar');
+        kpiExtra.style.display = 'block';
+        kpiExtra2.style.display = 'none';
+        kpisGrid.classList.add('impar');
         notaUmbral.style.display = 'none';
         btnNacional.style.display = 'none';
       }
@@ -570,11 +581,13 @@
           d.pct_discapacidad != null ? fmtPct(d.pct_discapacidad) : 's/d',
           d.pct_hombres != null ? fmtPct(d.pct_hombres) : 's/d',
           d.pct_hombres != null ? fmtPct(100 - d.pct_hombres) : 's/d',
-          d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d'
-        ] : ['s/d', 's/d', 's/d', 's/d', 's/d', 's/d', 's/d'];
+          d.psc_x1000 != null ? fmtTasa(d.psc_x1000) + (d.bajo_umbral ? ' *' : '') : 's/d',
+          d.pob_total != null ? fmt(d.pob_total) : 's/d'
+        ] : ['s/d', 's/d', 's/d', 's/d', 's/d', 's/d', 's/d', 's/d'];
         mostrarIndicadores('Indicadores — ' + nombre, valores, ETIQUETAS_COMUNA);
         kpiExtra.style.display = 'block';
-        kpisGrid.classList.add('impar');
+        kpiExtra2.style.display = 'block';
+        kpisGrid.classList.remove('impar');
         notaUmbral.style.display = d && d.bajo_umbral ? 'block' : 'none';
         btnNacional.style.display = 'inline-block';
       }
