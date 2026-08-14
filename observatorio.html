@@ -239,6 +239,50 @@
     .popup-comuna td { padding: 1px 4px; }
     .popup-comuna td:first-child { color: #555; }
 
+    /* Resumen del análisis estadístico */
+    .resumen-analisis {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px 30px;
+    }
+
+    .resumen-analisis .caja {
+      background: var(--bg-panel);
+      border: 1px solid #2f2f2f;
+      border-radius: 14px;
+      padding: 22px 26px;
+    }
+
+    .resumen-analisis h3 { font-size: 18px; margin-bottom: 10px; font-weight: 600; }
+    .resumen-analisis p { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+
+    .resumen-analisis ul {
+      list-style: none;
+      margin-bottom: 12px;
+    }
+
+    .resumen-analisis li {
+      color: var(--text);
+      font-size: 14px;
+      padding: 7px 0 7px 20px;
+      position: relative;
+      border-bottom: 1px solid #262626;
+    }
+
+    .resumen-analisis li:last-child { border-bottom: none; }
+
+    .resumen-analisis li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-hover);
+    }
+
+    .resumen-analisis li b { color: var(--accent-hover); font-weight: 600; }
+
+    .resumen-analisis a { color: var(--accent-hover); }
+    .resumen-analisis a:hover { text-decoration: underline; }
+
     /* Nota metodológica y fuentes */
     .fuentes {
       max-width: var(--maxw);
@@ -249,6 +293,9 @@
     }
 
     .fuentes p { margin-bottom: 8px; }
+
+    .fuentes a { color: var(--accent-hover); }
+    .fuentes a:hover { text-decoration: underline; }
 
     @media (max-width: 900px) {
       .obs-layout { grid-template-columns: 1fr; }
@@ -329,6 +376,37 @@
         <p class="top-nota">El ranking por tasa excluye las comunas bajo el umbral de publicación
         del INE (*), por la inestabilidad de sus denominadores pequeños.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="resumen-analisis">
+    <div class="caja">
+      <h3>Más allá del mapa: ¿con qué se relaciona la distribución?</h3>
+      <p>
+        Además de visualizar, exploramos estadísticamente la distribución comunal en dos preguntas:
+        <b>¿en qué comunas aparece el fenómeno?</b> (las 346 comunas) y <b>¿qué tan intenso es donde
+        aparece?</b> (las 202 comunas con registros). Lo que encontramos:
+      </p>
+      <ul>
+        <li><b>El fenómeno es marcadamente urbano:</b> el 100% de las comunas urbanas registra
+          personas en situación de calle, y donde aparece, su intensidad es cerca de 4 veces la de
+          las comunas rurales.</li>
+        <li><b>La vulnerabilidad del territorio no muestra una relación clara:</b> ni la presencia
+          ni la intensidad se asocian al cuartil de vulnerabilidad una vez considerado el tamaño y
+          el carácter urbano de cada comuna.</li>
+        <li><b>Quienes viven en calle no son necesariamente de la comuna donde fueron censados:</b>
+          el trabajo etnográfico señala trayectorias de movimiento, redes y arraigo que el dato
+          territorial no captura por sí solo.</li>
+        <li><b>Casos como Colchane obedecen a procesos distintos:</b> su alto número se asocia a
+          personas en tránsito migratorio a la espera en el paso fronterizo, y se analiza por
+          separado.</li>
+      </ul>
+      <p>
+        Son asociaciones entre territorios —no causas— exploradas con un modelo estadístico de dos
+        etapas y cuatro chequeos de robustez. Metodología y resultados reproducibles:
+        <a href="https://github.com/Alexanderguzman-ant/Alexanderguzman-ant.github.io/blob/main/datos/analisis_hurdle_psc.py" target="_blank" rel="noopener">análisis (Python)</a> ·
+        <a href="https://github.com/Alexanderguzman-ant/Alexanderguzman-ant.github.io/blob/main/datos/resultados_hurdle_psc.csv" target="_blank" rel="noopener">resultados (CSV)</a>.
+      </p>
     </div>
   </section>
 
