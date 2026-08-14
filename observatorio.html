@@ -195,6 +195,20 @@
     .kpi .etiqueta { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
 
     /* Top 10 barras */
+    .tops {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .tops h3 { font-size: 14px; margin-bottom: 12px; }
+
+    .top-nota {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
     .top10-row { margin-bottom: 9px; font-size: 13.5px; }
 
     .top10-row .lbl {
@@ -242,6 +256,7 @@
       .buscador-comuna { flex: 1 1 100%; }
       .buscador-comuna input { width: 100%; }
       .kpis { grid-template-columns: 1fr; }
+      .tops { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -301,8 +316,18 @@
         </div>
         <div id="kpi-nota-umbral" class="kpi-nota" style="display:none;">* tasa inestable: población bajo umbral estadístico (INE)</div>
         <button type="button" id="btn-nacional" class="btn-nacional" style="display:none;">← Volver a vista nacional</button>
-        <h3>Top 10 comunas por personas en calle</h3>
-        <div id="top10"></div>
+        <div class="tops">
+          <div>
+            <h3>10 comunas con mayor número de personas en situación calle</h3>
+            <div id="top10-n"></div>
+          </div>
+          <div>
+            <h3>10 comunas con mayor número de PSC por mil habitantes</h3>
+            <div id="top10-tasa"></div>
+          </div>
+        </div>
+        <p class="top-nota">El ranking por tasa excluye las comunas bajo el umbral de publicación
+        del INE (*), por la inestabilidad de sus denominadores pequeños.</p>
       </div>
     </div>
   </section>
@@ -446,17 +471,29 @@
       document.querySelector('.kpis').classList.add('impar');
 
       // ---------- Top 10 ----------
-      var top = Object.keys(datos)
+      function renderTop10(elId, lista, valorFn, fmtFn) {
+        var maxV = valorFn(lista[0]);
+        document.getElementById(elId).innerHTML = lista.map(function (d) {
+          var ancho = Math.max(2, (valorFn(d) / maxV) * 100);
+          return '<div class="top10-row"><div class="lbl"><b>' + d.comuna + '</b><span>' + fmtFn(valorFn(d)) + '</span></div>' +
+            '<div class="top10-bar"><div style="width:' + ancho.toFixed(1) + '%"></div></div></div>';
+        }).join('');
+      }
+
+      var conPsc = Object.keys(datos)
         .map(function (cod) { return datos[cod]; })
-        .filter(function (d) { return d.n_psc > 0; })
-        .sort(function (a, b) { return b.n_psc - a.n_psc; })
-        .slice(0, 10);
-      var maxN = top[0].n_psc;
-      document.getElementById('top10').innerHTML = top.map(function (d) {
-        var ancho = Math.max(2, (d.n_psc / maxN) * 100);
-        return '<div class="top10-row"><div class="lbl"><b>' + d.comuna + '</b><span>' + fmt(d.n_psc) + '</span></div>' +
-          '<div class="top10-bar"><div style="width:' + ancho.toFixed(1) + '%"></div></div></div>';
-      }).join('');
+        .filter(function (d) { return d.n_psc > 0; });
+
+      renderTop10('top10-n',
+        conPsc.slice().sort(function (a, b) { return b.n_psc - a.n_psc; }).slice(0, 10),
+        function (d) { return d.n_psc; }, fmt);
+
+      // Por tasa: se excluyen las comunas bajo umbral INE (bajo_umbral) por
+      // inestabilidad de los denominadores pequeños.
+      renderTop10('top10-tasa',
+        conPsc.filter(function (d) { return d.psc_x1000 != null && !d.bajo_umbral; })
+          .sort(function (a, b) { return b.psc_x1000 - a.psc_x1000; }).slice(0, 10),
+        function (d) { return d.psc_x1000; }, fmtTasa);
 
       // ---------- Mapa ----------
       var mapa = L.map('mapa', { scrollWheelZoom: true }).setView([-35.7, -71.3], 4);
