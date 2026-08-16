@@ -6,7 +6,7 @@ Sitio estático (HTML/CSS/JS, sin servidor ni build) con mi presentación profes
 
 ```
 ├── index.html                 # Inicio, sobre mí, proyectos
-├── caso-situacion-calle.html  # Caos de estudio
+├── caso-situacion-calle.html  # Caso de estudio
 ├── styles.css                 # Estilo
 └── img/                       # Fotografías
 ```
