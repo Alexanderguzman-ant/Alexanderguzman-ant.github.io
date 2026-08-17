@@ -95,6 +95,28 @@ LIMITACIONES DECLARADAS
     entre comunas; parte de los contrastes rurales podría deberse a la
     medición y no a una ausencia real del fenómeno.
 
+SÍNTESIS
+--------
+La lectura que resiste los cuatro chequeos de robustez: la situación calle
+aparece como un fenómeno estructuralmente urbano — donde hay aglomeración,
+hay calle; y donde hay más masa económica informal, hay más. La vulnerabilidad
+comunal medida por el IGVUST no muestra capacidad adicional para dar cuenta
+del patrón: la calle no se distribuye según la pobreza del territorio, sino
+según su estructura económica urbana. Esta lectura dialoga con una tesis
+mayor —la producción economico-política del fenómeno— mejor que la hipótesis
+de una elección de residencia según cuartil de vulnerabilidad. La variación
+dentro de lo urbano (dónde la población logra arraigarse y dónde es tolerada
+o expulsada) es donde el trabajo etnográfico aporta el mecanismo: las
+restricciones de arraigo y la tolerancia institucional que cada comuna ha
+construido en su historia.
+
+Un matiz necesario: la tolerancia —de la población y de las instituciones— no
+es causa de la situación calle. La hipótesis es que se relaciona con su
+VISIBILIDAD: dónde el fenómeno puede instalarse, permanecer y ser contado, y
+no con su producción. En otras palabras, la ausencia de registro en un
+territorio no implica necesariamente ausencia del fenómeno, y la presencia
+visible no implica que el territorio lo haya generado.
+
 Para reproducir:  python analisis_hurdle_psc.py   (dentro de la carpeta datos/)
 Salida: resultados_hurdle_psc.csv — coeficientes de todas las variantes
         (OR = cuánto más probable es la presencia; IRR = cuánto mayor podría
