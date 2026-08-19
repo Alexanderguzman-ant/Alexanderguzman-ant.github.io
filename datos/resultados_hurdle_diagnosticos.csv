@@ -1,0 +1,11 @@
+seccion,variante,n,n_pos,logit_pseudoR2,nb_alpha,nb_alpha_p,comuna,cook
+resumen_variantes,principal,346.0,202.0,0.5133235144718367,0.5993640755485603,1.0047259115006499e-20,,
+resumen_variantes,a_sin_bajo_umbral,295.0,196.0,,0.45495132294424045,6.293121813751399e-19,,
+resumen_variantes,b_sin_colchane,345.0,201.0,,0.4639056551149461,4.641566533640317e-19,,
+resumen_variantes,c_sin_corredor_norte,343.0,199.0,,0.4690137850779245,7.701499716570197e-19,,
+resumen_variantes,d_solo_urbanas,82.0,82.0,,0.2896009504358819,1.3078290244852154e-10,,
+cook_logit_principal,,,,,,,HUARA,0.1351342425829111
+cook_logit_principal,,,,,,,COLCHANE,0.1178197147898455
+cook_logit_principal,,,,,,,ALTO DEL CARMEN,0.050737550234063324
+cook_logit_principal,,,,,,,PAIGUANO,0.0389104004973176
+cook_logit_principal,,,,,,,CALERA DE TANGO,0.02983240569428335

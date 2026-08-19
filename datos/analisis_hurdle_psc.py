@@ -6,7 +6,7 @@ Análisis comunal con datos del Censo 2024.
 QUÉ BUSCA ESTE ANÁLISIS
 -----------------------
 El siguiente análisis estadístico busca comprender el fenómeno de la situación
-calle a partir de los datos territoriales disponibles. El mapa del observatorio
+de calle a partir de los datos territoriales disponibles. El mapa del observatorio
 muestra DÓNDE están las 21.750 personas en situación de calle (PSC); aquí se
 exploran posibles relaciones entre esa distribución y dos características de
 cada comuna —su nivel de vulnerabilidad (IGVUST) y su carácter rural o urbano—
@@ -30,10 +30,13 @@ CÓMO ESTÁ ARMADA LA MUESTRA (qué comunas entran a cada paso)
                     clasificación territorial (rural / mixta / urbana).
 
   Pregunta 1 — ¿en qué comunas APARECE el fenómeno?
-               Entran las 346 comunas. Cada una aporta un sí (202 comunas
-               tienen al menos una persona en calle) o un no (144 no
-               registran). Las 144 comunas en cero no se descartan: son la
-               evidencia clave de que el fenómeno no está en todas partes.
+               Entran las 346 comunas: 202 registran al menos una persona en
+               calle y 144 no registran. El patrón resultante —la calle se
+               concentra en lo urbano— se alinea con lo documentado por la
+               literatura sobre el fenómeno; aquí solo se examina su
+               consistencia con los datos del Censo 2024. El peso analítico
+               está en la Pregunta 2. Las 144 comunas en cero no se descartan:
+               son evidencia de que el fenómeno no está en todas partes.
 
   Pregunta 2 — ¿qué tan INTENSO es el fenómeno donde aparece?
                Entran solo las 202 comunas con PSC. Aquí lo que importa no es
@@ -74,6 +77,11 @@ DECISIONES ANALÍTICAS (y sus razones)
   - En la Pregunta 1 la clasificación urbana no entra como variable: el 100%
     de las comunas urbanas registra PSC, así que no hay variación que estimar.
     Ese hecho ES el resultado, y se reporta como tal.
+  - La Pregunta 1 se reporta solo para la muestra completa: en submuestras
+    pequeñas el logit presenta separación cuasi-completa regional, por lo que
+    sus coeficientes regionales no se interpretan (los de cuartil y tamaño de
+    la población sí se mantienen reportables). Se intentó la corrección de
+    Firth sin éxito por disponibilidad de la librería en el entorno.
   - Antártica (12202) no tiene clasificación territorial en el SIVUST; se
     asigna 'Rural' por tratarse de un asentamiento pequeño y aislado.
   - El umbral INE se toma del archivo de población (51 comunas). El JSON del
@@ -94,33 +102,48 @@ LIMITACIONES DECLARADAS
   - El censo sub-registra poblaciones ocultas y el esfuerzo de conteo varía
     entre comunas; parte de los contrastes rurales podría deberse a la
     medición y no a una ausencia real del fenómeno.
+  - Las 144 comunas sin registro y ese posible subregistro rural pueden
+    relacionarse con lo que la literatura llama "hidden homelessness" o calle
+    oculta: en contextos rurales el fenómeno no necesariamente desaparece,
+    sino que se vuelve invisible —casas tomadas, galpones, vehículos, rotación
+    entre hogares—. Es solo un puntero para el lector interesado; estos datos
+    no permiten afirmar que aplique al caso chileno.
 
 SÍNTESIS
 --------
-La lectura que resiste los cuatro chequeos de robustez: la situación calle
+La lectura que resiste los cuatro chequeos de robustez: la situación de calle
 aparece como un fenómeno estructuralmente urbano — donde hay aglomeración,
-hay calle; y donde hay más masa económica informal, hay más. La vulnerabilidad
-comunal medida por el IGVUST no muestra capacidad adicional para dar cuenta
-del patrón: la calle no se distribuye según la pobreza del territorio, sino
-según su estructura económica urbana. Esta lectura dialoga con una tesis
-mayor —la producción economico-política del fenómeno— mejor que la hipótesis
-de una elección de residencia según cuartil de vulnerabilidad. La variación
-dentro de lo urbano (dónde la población logra arraigarse y dónde es tolerada
-o expulsada) es donde el trabajo etnográfico aporta el mecanismo: las
-restricciones de arraigo y la tolerancia institucional que cada comuna ha
-construido en su historia.
+hay calle. Es un patrón compatible con una lectura de la calle como fenómeno
+de la estructura económica urbana, hipótesis que estos datos no miden
+directamente. La vulnerabilidad comunal medida por el IGVUST no muestra
+capacidad adicional para dar cuenta del patrón: la calle no se distribuye
+según la pobreza del territorio, sino según su estructura urbana. Esta lectura
+dialoga con una tesis mayor —la producción economico-política del fenómeno—
+mejor que la hipótesis de una elección de residencia según cuartil de
+vulnerabilidad. La variación dentro de lo urbano (dónde la población logra
+arraigarse y dónde es tolerada o expulsada) es donde el trabajo etnográfico
+aporta el mecanismo: las restricciones de arraigo y la tolerancia institucional
+que cada comuna ha construido en su historia.
+
+La relación entre tamaño comunal e intensidad tampoco es directa: en la
+muestra completa no es significativa (IRR de log(población) ≈ 0,83), y solo se
+vuelve positiva y significativa (IRR entre 1,35 y 1,53) al remover Colchane y
+el corredor fronterizo norte — lo que a su vez evidencia cuán anómalo es
+Colchane como proceso distinto.
 
 Un matiz necesario: la tolerancia —de la población y de las instituciones— no
-es causa de la situación calle. La hipótesis es que se relaciona con su
+es causa de la situación de calle. La hipótesis es que se relaciona con su
 VISIBILIDAD: dónde el fenómeno puede instalarse, permanecer y ser contado, y
 no con su producción. En otras palabras, la ausencia de registro en un
 territorio no implica necesariamente ausencia del fenómeno, y la presencia
 visible no implica que el territorio lo haya generado.
 
 Para reproducir:  python analisis_hurdle_psc.py   (dentro de la carpeta datos/)
-Salida: resultados_hurdle_psc.csv — coeficientes de todas las variantes
-        (OR = cuánto más probable es la presencia; IRR = cuánto mayor podría
-        ser la tasa; en ambos casos, 1 significa "sin diferencia").
+Salidas: resultados_hurdle_psc.csv — coeficientes de todas las variantes
+         (OR = cuánto más probable es la presencia; IRR = cuánto mayor podría
+         ser la tasa; en ambos casos, 1 significa "sin diferencia");
+         resultados_hurdle_diagnosticos.csv — resumen de variantes y las
+         comunas más influyentes del logit (distancia de Cook).
 """
 
 import json
@@ -172,13 +195,15 @@ FORMULA_NB_URB = 'n_psc ~ C(cuartil) + log_pob + C(cod_reg)'  # variante solo ur
 
 # ---------------- Ajuste de las dos partes ----------------
 def ajustar(d, etiqueta):
-    """Ajusta logit de presencia y NB2 de intensidad; retorna resumen de ambos."""
+    """Ajusta logit de presencia (solo variante principal) y NB2 de intensidad."""
     res = {'variante': etiqueta, 'n': len(d), 'n_pos': int(d['presencia'].sum())}
 
-    # Si la presencia es constante (solo urbanas: todas con PSC), el logit no
-    # es estimable — ese hecho ES el resultado de la parte extensiva.
+    # El logit se reporta solo para la muestra completa: en submuestras
+    # pequeñas presenta separación cuasi-completa regional (IC que degeneran).
+    # (Si la presencia fuera constante —caso solo urbanas— tampoco sería
+    # estimable: ese hecho ES el resultado de la parte extensiva.)
     logit = None
-    if d['presencia'].nunique() > 1:
+    if etiqueta == 'principal' and d['presencia'].nunique() > 1:
         logit = smf.logit(FORMULA, data=d).fit(disp=0)
         res['logit_pseudoR2'] = logit.prsquared
 
@@ -206,7 +231,9 @@ def irr_table(modelo, parte, variante):
 
 
 # ---------------- Variantes ----------------
-CORREDOR_NORTE = [15101, 1403, 1404]  # Arica, Colchane, Pozo Almonte
+# Códigos verificados contra el campo 'comuna' del JSON de indicadores:
+# 15101 = ARICA, 1403 = COLCHANE, 1401 = POZO ALMONTE (1404 es Huara: NO va).
+CORREDOR_NORTE = [15101, 1403, 1401]  # Arica, Colchane, Pozo Almonte
 
 variantes = {
     'principal': df,
@@ -262,6 +289,10 @@ print('NB alpha:', round(nb_p.params['alpha'], 3),
       '| p(alpha=0):', format(nb_p.pvalues['alpha'], '.2e'),
       '-> sobredispersión significativa si p<0.05 (justifica NB sobre Poisson)')
 
+# Validación de la variante (c): comunas efectivamente excluidas
+print('\nVariante (c) excluye:',
+      ', '.join(df[df['cod_com'].isin(CORREDOR_NORTE)]['comuna']))
+
 # Influencia en logit: distancia de Cook
 inf = logit_p.get_influence()
 cooks = inf.cooks_distance[0]
@@ -269,4 +300,13 @@ top_inf = pd.DataFrame({'comuna': df['comuna'].values, 'cook': cooks}).nlargest(
 print('\nComunas más influyentes en logit (Cook):')
 print(top_inf.round(4).to_string(index=False))
 
-print('\nResultados guardados en resultados_hurdle_psc.csv')
+# ---------------- Trazabilidad: CSV de diagnósticos ----------------
+COLS_DIAG = ['seccion', 'variante', 'n', 'n_pos', 'logit_pseudoR2',
+             'nb_alpha', 'nb_alpha_p', 'comuna', 'cook']
+diag = pd.concat([
+    pd.DataFrame(resumenes).assign(seccion='resumen_variantes'),
+    top_inf.assign(seccion='cook_logit_principal'),
+], ignore_index=True).reindex(columns=COLS_DIAG)
+diag.to_csv('resultados_hurdle_diagnosticos.csv', index=False)
+
+print('\nResultados guardados en resultados_hurdle_psc.csv y resultados_hurdle_diagnosticos.csv')
