@@ -637,8 +637,8 @@
 
       // ---------- Mapa ----------
       var mapa = L.map('mapa', { scrollWheelZoom: true }).setView([-35.7, -71.3], 4);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
         maxZoom: 18
       }).addTo(mapa);
 
@@ -720,10 +720,11 @@
       });
 
       // ---------- Capa de etiquetas por sobre el coroplético ----------
+      // Referencia de Esri diseñada para imagen satelital (la de CARTO oscuro era ilegible aquí)
       mapa.createPane('labels');
       mapa.getPane('labels').style.zIndex = 640;
       mapa.getPane('labels').style.pointerEvents = 'none';
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
         pane: 'labels',
         maxZoom: 18
       }).addTo(mapa);
