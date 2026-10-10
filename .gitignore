@@ -1,6 +1,9 @@
 # Datos crudos y microdatos: no subir al repo
 datos/*
-# Excepciones: análisis reproducible y resultados agregados (sin microdatos)
+# Excepciones: análisis reproducible, insumos agregados y resultados (sin microdatos)
+!datos/generar_comuna_indicadores.py
 !datos/analisis_hurdle_psc.py
+!datos/202510_igvust_comunal_cuartil.xlsx
+!datos/poblacion_comunal_censo2024.xlsx
 !datos/resultados_hurdle_psc.csv
 !datos/resultados_hurdle_diagnosticos.csv
